@@ -12,43 +12,30 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 body { background: var(--bg-dark); color: var(--text-main); padding-bottom: 80px; }
 
-/* হেডার */
 header { background: #172131; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #2d3a4f; }
 .logo { font-weight: 800; color: var(--primary-blue); font-size: 20px; }
 .logo span { color: white; }
 .balance-box { background: #0f1621; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--accent-gold); font-size: 14px; color: var(--accent-gold); font-weight: bold; }
 
-/* ব্যানার */
-.promo-banner { margin: 15px; height: 120px; background: linear-gradient(45deg, #1e3a8a, #3b82f6); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
-.promo-banner h2 { font-size: 18px; position: relative; z-index: 2; }
-.promo-banner i { position: absolute; right: -10px; bottom: -10px; font-size: 80px; color: rgba(255,255,255,0.1); }
-
-/* বাটন সেকশন */
-.wallet-actions { display: flex; gap: 10px; padding: 0 15px 15px; }
+.wallet-actions { display: flex; gap: 10px; padding: 15px; }
 .action-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
 .dep-btn { background: var(--success); color: white; }
 .wit-btn { background: var(--error); color: white; }
 
-/* পেমেন্ট মেথড আইকন */
+/* পেমেন্ট মোডাল ডিজাইন */
 .payment-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0; }
-.method-item { background: #0f1621; border: 1px solid #2d3a4f; border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
-.method-item img { width: 35px; height: 35px; object-fit: contain; margin-bottom: 5px; }
-.method-item span { font-size: 10px; }
-.method-item.active { border-color: var(--primary-blue); background: #172131; box-shadow: 0 0 10px rgba(33, 150, 243, 0.3); }
+.method-item { background: #0f1621; border: 1px solid #2d3a4f; border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+.method-item img { width: 35px; height: 35px; margin-bottom: 5px; }
+.method-item.active { border-color: var(--primary-blue); background: #172131; }
 
-/* গেম গ্রিড */
-.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
-.game-card { background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid #2d3a4f; text-align: center; }
-.game-card img { width: 100%; height: 90px; object-fit: cover; }
-.game-info { padding: 8px; font-size: 11px; }
+.number-display { background: #0a0f18; padding: 10px; border-radius: 8px; margin: 10px 0; border: 1px dashed var(--accent-gold); display: none; }
+.number-display span { color: var(--accent-gold); font-weight: bold; font-size: 16px; }
 
-/* মোডাল */
 .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; }
 .modal-content { background: var(--bg-card); padding: 25px; border-radius: 15px; width: 85%; max-width: 400px; text-align: center; }
-.modal input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: none; background: #0f1621; color: white; text-align: center; }
+.modal input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: none; background: #0f1621; color: white; text-align: center; }
 
-/* নব বার */
 .nav-bar { position: fixed; bottom: 0; width: 100%; background: #172131; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #2d3a4f; }
 .nav-item { text-align: center; color: var(--text-dim); text-decoration: none; font-size: 10px; }
-.nav-item i { font-size: 20px; display: block; margin-bottom: 2px; }
+.nav-item i { font-size: 20px; display: block; }
 .nav-item.active { color: var(--primary-blue); }
