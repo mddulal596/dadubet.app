@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DADUBET - Admin Control Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #0f172a; --card: #1e293b; --red: #ef4444; --green: #22c55e; --blue: #3b82f6; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: white; padding: 15px; }
+        .container { max-width: 600px; margin: auto; }
+        h2 { text-align: center; color: var(--blue); }
+        .section { background: var(--card); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #334155; }
+        .request-item { background: #0f172a; padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 4px solid var(--blue); font-size: 13px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #334155; background: #0f172a; color: white; }
+        button { width: 100%; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 5px; }
+        .btn-red { background: var(--red); color: white; }
+        .btn-green { background: var(--green); color: white; }
+        .clear-btn { background: #475569; color: white; font-size: 10px; width: auto; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-user-shield"></i> DADUBET অ্যাডমিন</h2>
+
+        <div class="section">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3><i class="fas fa-bell"></i> পেমেন্ট রিকোয়েস্ট</h3>
+                <button class="clear-btn" onclick="clearRequests()">ক্লিয়ার অল</button>
+            </div>
+            <div id="requestList">
+                <p style="color: gray; text-align: center;">কোনো নতুন রিকোয়েস্ট নেই</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3><i class="fas fa-tools"></i> গেম ও ব্যালেন্স কন্ট্রোল</h3>
+            <label>ইউজার ব্যালেন্স সেট করুন:</label>
+            <input type="number" id="newBal" placeholder="পরিমাণ লিখুন">
+            <button class="btn-green" onclick="setBalance()">ব্যালেন্স আপডেট করুন</button>
+            <hr style="margin: 15px 0; border: 0.5px solid #334155;">
+            <label>পরবর্তী উইন নাম্বার (১-১০):</label>
+            <input type="number" id="winNum" placeholder="নাম্বার লিখুন">
+            <button class="btn-red" onclick="setWin()">গেম ফিক্স করুন</button>
+        </div>
+    </div>
+
+    <script>
+        function loadRequests() {
+            const list = document.getElementById('requestList');
+            const data = JSON.parse(localStorage.getItem('paymentRequests') || '[]');
+            if(data.length === 0) {
+                list.innerHTML = '<p style="color: gray; text-align: center;">কোনো নতুন রিকোয়েস্ট নেই</p>';
+                return;
+            }
+            list.innerHTML = data.map((req, index) => `
+                <div class="request-item">
+                    <b>টাইপ:</b> ${req.type === 'deposit' ? 'ডিপোজিট' : 'উইথড্র'} <br>
+                    <b>মেথড:</b> ${req.method} | <b>টাকা:</b> ৳${req.amount} <br>
+                    <b>নাম্বার/TrxID:</b> ${req.info} <br>
+                    <small>${req.time}</small>
+                </div>
+            `).reverse().join('');
+        }
+
+        function setBalance() {
+            let b = document.getElementById('newBal').value;
+            if(b) { localStorage.setItem('userBalance', b); alert("ব্যালেন্স আপডেট হয়েছে!"); }
+        }
+
+        function setWin() {
+            let n = document.getElementById('winNum').value;
+            if(n >= 1 && n <= 10) { localStorage.setItem('forcedNumber', n); alert("নাম্বার ফিক্স হয়েছে!"); }
+        }
+
+        function clearRequests() {
+            localStorage.removeItem('paymentRequests');
+            loadRequests();
+        }
+
+        // প্রতি ২ সেকেন্ড পর পর নতুন রিকোয়েস্ট চেক করবে
+        setInterval(loadRequests, 2000);
+        loadRequests();
+    </script>
+</body>
+</html>
