@@ -1,4 +1,3 @@
-/* ১. গ্লোবাল স্টাইল ও ভেরিয়েবল */
 :root {
     --bg-dark: #0f1621;
     --bg-card: #1c2536;
@@ -6,204 +5,38 @@
     --accent-gold: #ffc107;
     --text-main: #ffffff;
     --text-dim: #94a3b8;
-    --success: #4caf50;
-    --error: #f44336;
-    --nav-bg: #172131;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background: var(--bg-dark); color: var(--text-main); padding-bottom: 80px; }
 
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    overflow-x: hidden;
-    padding-bottom: 80px;
-}
+header { background: #172131; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #2d3a4f; }
+.logo { font-weight: 800; color: var(--primary-blue); font-size: 20px; }
+.logo span { color: white; }
+.balance-box { background: #0f1621; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--accent-gold); font-size: 13px; color: var(--accent-gold); }
 
-/* ২. হেডার ডিজাইন */
-header {
-    background: var(--nav-bg);
-    padding: 12px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #2d3a4f;
-}
+.promo-banner { margin: 15px; height: 120px; background: linear-gradient(45deg, #1e3a8a, #3b82f6); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
+.promo-banner i { position: absolute; right: -10px; bottom: -10px; font-size: 80px; color: rgba(255,255,255,0.1); }
 
-.logo {
-    font-weight: 800;
-    font-size: 20px;
-    color: var(--primary-blue);
-    text-transform: uppercase;
-}
+.wallet-actions { display: flex; gap: 10px; padding: 15px; }
+.action-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.dep-btn { background: #4caf50; color: white; }
+.wit-btn { background: #f44336; color: white; }
 
-.logo span {
-    color: white;
-}
+.game-section { background: var(--bg-card); margin: 0 15px 15px; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid #334155; }
+.input-group input { width: 60px; padding: 8px; border-radius: 5px; border: none; text-align: center; margin-right: 10px; }
+.play-btn { background: var(--primary-blue); color: white; border: none; padding: 8px 20px; border-radius: 5px; }
 
-.balance-box {
-    background: #0f1621;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--accent-gold);
-    font-size: 13px;
-    color: var(--accent-gold);
-    font-weight: bold;
-}
+.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
+.game-card { background: var(--bg-card); border-radius: 10px; overflow: hidden; border: 1px solid #2d3a4f; }
+.game-card img { width: 100%; height: 90px; object-fit: cover; }
+.game-info { padding: 8px; font-size: 12px; text-align: center; }
 
-/* ৩. প্রোমো ব্যানার ও জ্যাকপট */
-.promo-banner {
-    margin: 15px;
-    height: 130px;
-    background: linear-gradient(45deg, #1e3a8a, #3b82f6);
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
+.nav-bar { position: fixed; bottom: 0; width: 100%; background: #172131; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #2d3a4f; }
+.nav-item { text-align: center; color: var(--text-dim); text-decoration: none; font-size: 10px; }
+.nav-item i { font-size: 18px; display: block; }
+.nav-item.active { color: var(--primary-blue); }
 
-.promo-banner h2 { font-size: 18px; z-index: 1; }
-
-.promo-banner i {
-    position: absolute;
-    right: -10px;
-    bottom: -10px;
-    font-size: 100px;
-    color: rgba(255,255,255,0.1);
-}
-
-/* ৪. ডিপোজিট ও উইথড্র বাটন */
-.wallet-actions {
-    display: flex;
-    gap: 10px;
-    padding: 0 15px 15px;
-}
-
-.action-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.dep-btn { background: var(--success); color: white; }
-.wit-btn { background: var(--error); color: white; }
-.action-btn:active { transform: scale(0.95); }
-
-/* ৫. গেম গ্রিড ও কার্ড */
-.grid-title {
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-}
-
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    padding: 0 15px;
-}
-
-.game-card {
-    background: var(--bg-card);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #2d3a4f;
-    position: relative;
-    text-align: center;
-}
-
-.game-card img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    filter: brightness(0.8);
-}
-
-.game-info {
-    padding: 8px;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-/* ৬. বটম নেভিগেশন */
-.nav-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: var(--nav-bg);
-    display: flex;
-    justify-content: space-around;
-    padding: 12px 0;
-    border-top: 1px solid #2d3a4f;
-    z-index: 1000;
-}
-
-.nav-item {
-    text-align: center;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 10px;
-}
-
-.nav-item i {
-    font-size: 18px;
-    margin-bottom: 4px;
-    display: block;
-}
-
-.nav-item.active {
-    color: var(--primary-blue);
-}
-
-/* ৭. মোডাল (পপ-আপ) স্টাইল */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: var(--bg-card);
-    padding: 25px;
-    border-radius: 15px;
-    width: 85%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px solid var(--primary-blue);
-}
-
-.modal input {
-    width: 100%;
-    padding: 12px;
-    margin: 15px 0;
-    border-radius: 8px;
-    border: 1px solid #2d3a4f;
-    background: var(--bg-dark);
-    color: white;
-    text-align: center;
-    font-size: 16px;
-  }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+.modal-content { background: var(--bg-card); padding: 25px; border-radius: 15px; width: 85%; text-align: center; }
+.modal input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; border: none; background: #0f1621; color: white; }
