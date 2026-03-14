@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DaduBet - 01917044596</title>
+    <title>DaduBet Official</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -23,77 +23,72 @@
     <div id="actionModal" class="modal">
         <div class="modal-content">
             <h3 id="modalTitle">ডিপোজিট</h3>
-            <p style="font-size: 11px; color: #94a3b8; margin-top: 5px;">পেমেন্ট মেথড বেছে নিন</p>
+            <p style="font-size: 12px; color: var(--text-dim); margin: 10px 0;">একটি পেমেন্ট মেথড নির্বাচন করুন</p>
             
             <div class="payment-methods">
                 <div class="method-item" onclick="selectMethod('Bkash', this)">
-                    <img src="https://raw.githubusercontent.com/Ariful-Islam-7/Payment-Icons/main/bkash.png">
+                    <img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg" alt="Bkash">
                     <span>বিকাশ</span>
                 </div>
                 <div class="method-item" onclick="selectMethod('Nagad', this)">
-                    <img src="https://raw.githubusercontent.com/Ariful-Islam-7/Payment-Icons/main/nagad.png">
+                    <img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png" alt="Nagad">
                     <span>নগদ</span>
                 </div>
                 <div class="method-item" onclick="selectMethod('Rocket', this)">
-                    <img src="https://raw.githubusercontent.com/Ariful-Islam-7/Payment-Icons/main/rocket.png">
+                    <img src="https://seeklogo.com/images/D/dutch-bangla-rocket-logo-B4D1CC458D-seeklogo.com.png" alt="Rocket">
                     <span>রকেট</span>
                 </div>
             </div>
 
-            <div id="numSection" class="number-display">
-                <p style="font-size: 10px;">নিচের নাম্বারে টাকা পাঠিয়ে ট্রানজেকশন ID দিন</p>
-                <span id="targetNumber">01917044596</span>
+            <div id="numDisplay" class="num-box">
+                <p style="font-size: 11px; margin-bottom: 5px;">নিচের নাম্বারে টাকা পাঠিয়ে TrxID দিন</p>
+                <b id="targetNum">01917044596</b>
             </div>
 
-            <input type="number" id="amountInput" placeholder="টাকার পরিমাণ">
-            <input type="text" id="trxInput" placeholder="TrxID (ট্রানজেকশন আইডি)">
+            <input type="number" id="amountInput" placeholder="টাকার পরিমাণ লিখুন">
+            <input type="text" id="trxInput" placeholder="ট্রানজেকশন আইডি (TrxID)">
             
-            <button class="action-btn dep-btn" id="submitBtn" onclick="processAction()">কনফার্ম</button>
-            <button class="action-btn" style="background:#475569; margin-top:10px;" onclick="closeModal()">বাতিল</button>
+            <button class="action-btn dep-btn" id="confirmBtn" onclick="processAction()">কনফার্ম করুন</button>
+            <button class="action-btn" style="background:#334155; margin-top:10px; color: white;" onclick="closeModal()">বাতিল</button>
         </div>
     </div>
 
-    <nav class="nav-bar">
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" class="nav-item"><i class="fas fa-gamepad"></i>Games</a>
-        <a href="#" class="nav-item"><i class="fas fa-user-circle"></i>Profile</a>
-    </nav>
-
     <script>
         let balance = 500.00;
-        let currentMode = '';
-        let selectedMethod = '';
+        let mode = '';
+        let selected = '';
 
-        function showModal(mode) {
-            currentMode = mode;
-            selectedMethod = '';
-            document.getElementById('modalTitle').innerText = mode === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
-            document.getElementById('numSection').style.display = 'none';
-            document.getElementById('trxInput').style.display = mode === 'deposit' ? 'block' : 'none';
+        function showModal(m) {
+            mode = m;
+            selected = '';
+            document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
+            document.getElementById('trxInput').style.display = m === 'deposit' ? 'block' : 'none';
+            document.getElementById('numDisplay').style.display = 'none';
+            document.querySelectorAll('.method-item').forEach(el => el.classList.remove('active'));
             document.getElementById('actionModal').style.display = 'flex';
         }
 
         function closeModal() { document.getElementById('actionModal').style.display = 'none'; }
 
-        function selectMethod(method, el) {
-            selectedMethod = method;
-            document.querySelectorAll('.method-item').forEach(i => i.classList.remove('active'));
+        function selectMethod(name, el) {
+            selected = name;
+            document.querySelectorAll('.method-item').forEach(item => item.classList.remove('active'));
             el.classList.add('active');
-            document.getElementById('numSection').style.display = 'block';
+            document.getElementById('numDisplay').style.display = 'block';
         }
 
         function processAction() {
-            let amount = parseFloat(document.getElementById('amountInput').value);
-            if(!selectedMethod) { alert("মেথড সিলেক্ট করুন!"); return; }
-            if(!amount || amount <= 0) { alert("পরিমাণ লিখুন!"); return; }
+            let amt = parseFloat(document.getElementById('amountInput').value);
+            if(!selected) { alert("মেথড সিলেক্ট করুন!"); return; }
+            if(!amt || amt <= 0) { alert("সঠিক পরিমাণ লিখুন!"); return; }
 
-            if(currentMode === 'deposit') {
-                alert(selectedMethod + " নাম্বারে ৳" + amount + " পাঠানোর রিকোয়েস্ট সফল! অ্যাডমিন ভেরিফাই করবে।");
+            if(mode === 'deposit') {
+                alert(selected + " নাম্বারে ৳" + amt + " পাঠানোর অনুরোধ সফল! অপেক্ষা করুন।");
             } else {
-                if(balance >= amount) {
-                    balance -= amount;
-                    alert("উইথড্র রিকোয়েস্ট সফল হয়েছে!");
-                } else { alert("ব্যালেন্স নেই!"); return; }
+                if(balance >= amt) {
+                    balance -= amt;
+                    alert("৳" + amt + " উইথড্র রিকোয়েস্ট পাঠানো হয়েছে।");
+                } else { alert("পর্যাপ্ত ব্যালেন্স নেই!"); return; }
             }
             document.getElementById('balanceDisplay').innerText = balance.toFixed(2);
             closeModal();
