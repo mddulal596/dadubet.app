@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaduBet - Premium Gaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f1621;
+            --bg-card: #1c2536;
+            --primary-blue: #2196f3;
+            --accent-gold: #ffc107;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; padding-bottom: 80px; }
+
+        /* হেডার */
+        header {
+            background: #172131;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2d3a4f;
+        }
+        .logo { font-weight: 800; font-size: 20px; color: var(--primary-blue); }
+        .logo span { color: white; }
+        .auth-btns .login { background: var(--primary-blue); color: white; border: none; padding: 6px 15px; border-radius: 4px; font-weight: 600; cursor: pointer; }
+
+        /* প্রোমো ব্যানার (স্লাইডার লুক) */
+        .promo-banner {
+            margin: 15px;
+            height: 150px;
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .promo-banner h2 { font-size: 20px; z-index: 1; }
+        .promo-banner p { color: #bfdbfe; font-size: 12px; z-index: 1; }
+        .promo-banner i { position: absolute; right: -20px; bottom: -20px; font-size: 120px; color: rgba(255,255,255,0.1); }
+
+        /* জ্যাকপট ডিসপ্লে */
+        .jackpot-box {
+            background: #1c2536;
+            margin: 0 15px 15px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+        .jackpot-amount { color: var(--accent-gold); font-weight: 700; font-size: 18px; }
+
+        /* সার্চ বার */
+        .search-row {
+            padding: 0 15px 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-box {
+            flex: 1;
+            background: #172131;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #2d3a4f;
+        }
+        .search-box input { background: transparent; border: none; color: white; width: 100%; margin-left: 10px; outline: none; font-size: 13px; }
+
+        /* গেম গ্রিড */
+        .grid-title { padding: 0 15px 10px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; }
+        .grid-title span { color: var(--primary-blue); font-size: 12px; }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 0 15px;
+        }
+        .game-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2d3a4f;
+            transition: 0.2s;
+        }
+        .game-card:active { transform: scale(0.96); }
+        .game-card img { width: 100%; height: 110px; object-fit: cover; }
+        .game-info { padding: 8px; font-size: 11px; display: flex; align-items: center; gap: 5px; color: var(--text-dim); }
+        .game-info b { color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* বটম মেনু */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #172131;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid #2d3a4f;
+            z-index: 1000;
+        }
+        .nav-item { text-align: center; color: var(--text-dim); text-decoration: none; font-size: 10px; }
+        .nav-item i { font-size: 18px; margin-bottom: 4px; display: block; }
+        .nav-item.active { color: var(--primary-blue); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">DADU<span>BET</span></div>
+        <div class="auth-btns">
+            <button class="login">Log In</button>
+        </div>
+    </header>
+
+    <div class="promo-banner">
+        <h2>100% বোনাস!</h2>
+        <p>আপনার প্রথম ডিপোজিটে পান দ্বিগুণ ব্যালেন্স</p>
+        <i class="fas fa-coins"></i>
+    </div>
+
+    <div class="jackpot-box">
+        <span style="font-size: 10px; color: var(--text-dim);">GLOBAL JACKPOT</span><br>
+        <span class="jackpot-amount">$ <span id="jackpot">4,250.00</span></span>
+    </div>
+
+    <div class="search-row">
+        <div class="search-box">
+            <i class="fas fa-search" style="color: #475569;"></i>
+            <input type="text" placeholder="গেমের নাম লিখুন...">
+        </div>
+        <button style="background:#172131; border:1px solid #2d3a4f; color:white; padding:10px; border-radius:8px;">
+            <i class="fas fa-filter"></i>
+        </button>
+    </div>
+
+    <div class="grid-title">জনপ্রিয় গেম <span>সব দেখুন</span></div>
+
+    <main class="game-grid">
+        <div class="game-card">
+            <img src="https://picsum.photos/id/102/300/200" alt="S">
+            <div class="game-info"><i class="fas fa-bolt" style="color:#ffc107"></i> <b>Sweet Bonanza</b></div>
+        </div>
+        <div class="game-card">
+            <img src="https://picsum.photos/id/103/300/200" alt="G">
+            <div class="game-info"><i class="fas fa-crown" style="color:#2196f3"></i> <b>Gates of Olympus</b></div>
+        </div>
+        <div class="game-card">
+            <img src="https://picsum.photos/id/104/300/200" alt="A">
+            <div class="game-info"><i class="fas fa-plane" style="color:#ef4444"></i> <b>Aviator Pro</b></div>
+        </div>
+        <div class="game-card">
+            <img src="https://picsum.photos/id/106/300/200" alt="P">
+            <div class="game-info"><i class="fas fa-diamond" style="color:#a855f7"></i> <b>Sugar Rush</b></div>
+        </div>
+    </main>
+
+    <nav class="nav-bar">
+        <a href="#" class="nav-item"><i class="fas fa-home"></i>Home</a>
+        <a href="#" class="nav-item"><i class="fas fa-th-large"></i>Games</a>
+        <a href="#" class="nav-item active"><i class="fas fa-heart"></i>Favorite</a>
+        <a href="#" class="nav-item"><i class="fas fa-gift"></i>Bonus</a>
+        <a href="#" class="nav-item"><i class="fas fa-user-circle"></i>Profile</a>
+    </nav>
+
+    <script>
+        // জ্যাকপট নাম্বার পরিবর্তন হওয়ার ছোট স্ক্রিপ্ট
+        let amt = 4250.00;
+        setInterval(() => {
+            amt += Math.random();
+            document.getElementById('jackpot').innerText = amt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }, 3000);
+    </script>
+
+</body>
+  </html>
