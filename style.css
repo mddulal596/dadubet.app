@@ -5,8 +5,9 @@
     --accent-gold: #ffc107;
     --text-main: #ffffff;
     --text-dim: #94a3b8;
-    --success: #4caf50;
-    --error: #f44336;
+    --bkash: #e2136e;
+    --nagad: #f7941d;
+    --rocket: #8c3494;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -15,27 +16,29 @@ body { background: var(--bg-dark); color: var(--text-main); padding-bottom: 80px
 header { background: #172131; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #2d3a4f; }
 .logo { font-weight: 800; color: var(--primary-blue); font-size: 20px; }
 .logo span { color: white; }
-.balance-box { background: #0f1621; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--accent-gold); font-size: 14px; color: var(--accent-gold); font-weight: bold; }
+.balance-box { background: #0f1621; padding: 6px 15px; border-radius: 20px; border: 1px solid var(--accent-gold); font-size: 14px; color: var(--accent-gold); font-weight: bold; }
 
 .wallet-actions { display: flex; gap: 10px; padding: 15px; }
 .action-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-.dep-btn { background: var(--success); color: white; }
-.wit-btn { background: var(--error); color: white; }
+.dep-btn { background: #4caf50; color: white; }
+.wit-btn { background: #f44336; color: white; }
 
-/* পেমেন্ট মোডাল ডিজাইন */
+/* পেমেন্ট মেথড ডিজাইন */
 .payment-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0; }
-.method-item { background: #0f1621; border: 1px solid #2d3a4f; border-radius: 8px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
-.method-item img { width: 35px; height: 35px; margin-bottom: 5px; }
-.method-item.active { border-color: var(--primary-blue); background: #172131; }
+.method-item { background: #172131; border: 2px solid #2d3a4f; border-radius: 12px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+.method-item img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 5px; border-radius: 8px; }
+.method-item span { font-size: 11px; font-weight: 600; }
 
-.number-display { background: #0a0f18; padding: 10px; border-radius: 8px; margin: 10px 0; border: 1px dashed var(--accent-gold); display: none; }
-.number-display span { color: var(--accent-gold); font-weight: bold; font-size: 16px; }
+.method-item.active[onclick*="Bkash"] { border-color: var(--bkash); background: rgba(226, 19, 110, 0.1); }
+.method-item.active[onclick*="Nagad"] { border-color: var(--nagad); background: rgba(247, 148, 29, 0.1); }
+.method-item.active[onclick*="Rocket"] { border-color: var(--rocket); background: rgba(140, 52, 148, 0.1); }
 
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; }
-.modal-content { background: var(--bg-card); padding: 25px; border-radius: 15px; width: 85%; max-width: 400px; text-align: center; }
-.modal input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: none; background: #0f1621; color: white; text-align: center; }
+.num-box { background: #0a0f18; padding: 12px; border-radius: 10px; margin: 10px 0; border: 1px dashed var(--accent-gold); display: none; animation: fadeIn 0.4s; }
+.num-box b { color: var(--accent-gold); font-size: 18px; letter-spacing: 1px; }
 
-.nav-bar { position: fixed; bottom: 0; width: 100%; background: #172131; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #2d3a4f; }
-.nav-item { text-align: center; color: var(--text-dim); text-decoration: none; font-size: 10px; }
-.nav-item i { font-size: 20px; display: block; }
-.nav-item.active { color: var(--primary-blue); }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+.modal-content { background: var(--bg-card); padding: 25px; border-radius: 20px; width: 100%; max-width: 380px; text-align: center; border: 1px solid #334155; }
+.modal input { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #2d3a4f; background: #0f1621; color: white; text-align: center; font-size: 15px; outline: none; }
+.modal input:focus { border-color: var(--primary-blue); }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
