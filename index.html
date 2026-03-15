@@ -16,7 +16,6 @@
     </header>
 
     <main id="main-content">
-        
         <div class="banner">
             <div class="banner-content">
                 <h2>100% বোনাস 🎉</h2>
@@ -26,40 +25,18 @@
         </div>
 
         <div class="wallet-actions">
-            <button class="action-btn dep-btn" onclick="openModal('deposit')">
-                <i class="fas fa-plus-circle"></i> ডিপোজিট
-            </button>
-            <button class="action-btn wit-btn" onclick="openModal('withdraw')">
-                <i class="fas fa-wallet"></i> উইথড্র
-            </button>
+            <button class="action-btn dep-btn" onclick="openModal('deposit')"><i class="fas fa-plus-circle"></i> ডিপোজিট</button>
+            <button class="action-btn wit-btn" onclick="openModal('withdraw')"><i class="fas fa-wallet"></i> উইথড্র</button>
         </div>
 
-        <div class="section-header">
-            <span>🔥 জনপ্রিয় গেমস</span>
-            <a href="#">সব দেখুন</a>
-        </div>
-
+        <div class="section-header"><span>🔥 সকল গেমস</span></div>
         <div class="game-grid">
-            <div class="game-card" onclick="location.href='aviator.html'">
-                <div class="badge">HOT</div>
-                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=200&auto=format&fit=crop" alt="Aviator">
-                <div class="game-label">Aviator ✈️</div>
-            </div>
-
-            <div class="game-card" onclick="location.href='mines.html'">
-                <img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?q=80&w=200&auto=format&fit=crop" alt="Mines">
-                <div class="game-label">Mines 💎</div>
-            </div>
-
-            <div class="game-card" onclick="location.href='dragon-tiger.html'">
-                <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=200&auto=format&fit=crop" alt="Dragon Tiger">
-                <div class="game-label">Dragon Tiger 🐲</div>
-            </div>
-
-            <div class="game-card" onclick="location.href='roulette.html'">
-                <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=200&auto=format&fit=crop" alt="Roulette">
-                <div class="game-label">Roulette 🎡</div>
-            </div>
+            <div class="game-card" onclick="location.href='aviator.html'"><div class="badge">HOT</div><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=200"><div class="game-label">Aviator ✈️</div></div>
+            <div class="game-card" onclick="location.href='mines.html'"><img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=200"><div class="game-label">Mines 💎</div></div>
+            <div class="game-card" onclick="location.href='dragon-tiger.html'"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=200"><div class="game-label">Dragon Tiger 🐲</div></div>
+            <div class="game-card" onclick="location.href='roulette.html'"><img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=200"><div class="game-label">Roulette 🎡</div></div>
+            <div class="game-card" onclick="location.href='plinko.html'"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=200"><div class="game-label">Plinko 💎</div></div>
+            <div class="game-card" onclick="location.href='head-tail.html'"><img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=200"><div class="game-label">Head Tail 🪙</div></div>
         </div>
     </main>
 
@@ -67,24 +44,15 @@
         <div class="modal-content">
             <h3 id="modalTitle">পেমেন্ট</h3>
             <div class="payment-methods">
-                <div class="method-item" onclick="selectMethod('Bkash', this)">
-                    <img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg">
-                </div>
-                <div class="method-item" onclick="selectMethod('Nagad', this)">
-                    <img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png">
-                </div>
+                <div class="method-item" onclick="selectMethod('Bkash', this)"><img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg"></div>
+                <div class="method-item" onclick="selectMethod('Nagad', this)"><img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png"></div>
             </div>
-
             <div id="adminNumBox" style="display:none;" class="admin-num">
-                টাকা পাঠানোর নাম্বার (Personal): <br>
-                <b style="color:#ffcc00; font-size: 18px;">01917044596</b>
+                টাকা পাঠানোর নাম্বার: <br><b style="color:#ffcc00; font-size: 18px;">01917044596</b>
             </div>
-
             <input type="number" id="amtInp" placeholder="টাকার পরিমাণ (৳)">
-            
             <input type="text" id="trxInp" placeholder="TrxID (ট্রানজেকশন আইডি)">
             <input type="number" id="userNumInp" placeholder="আপনার বিকাশ/নগদ নাম্বার" style="display:none;">
-
             <button class="submit-btn" onclick="submitPay()">কনফার্ম করুন</button>
             <button class="close-btn" onclick="closeModal()">বাতিল</button>
         </div>
@@ -98,61 +66,26 @@
     </nav>
 
     <script>
-        let balance = 500.00;
-        let mode = ''; 
-        let selected = '';
-
-        function updateBalance() {
-            document.getElementById('balanceDisplay').innerText = balance.toFixed(2);
-        }
-
+        let balance = 500.00; let mode = ''; let selected = '';
+        function updateBalance() { document.getElementById('balanceDisplay').innerText = balance.toFixed(2); }
         function openModal(m) {
-            mode = m;
-            selected = '';
-            document.querySelectorAll('.method-item').forEach(i => i.classList.remove('active'));
-            document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
-            
-            // UI Toggle
+            mode = m; document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
             document.getElementById('trxInp').style.display = m === 'deposit' ? 'block' : 'none';
             document.getElementById('userNumInp').style.display = m === 'withdraw' ? 'block' : 'none';
-            document.getElementById('adminNumBox').style.display = 'none';
-            
             document.getElementById('paymentModal').style.display = 'flex';
         }
-
-        function closeModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
-
+        function closeModal() { document.getElementById('paymentModal').style.display = 'none'; }
         function selectMethod(name, el) {
-            selected = name;
-            document.querySelectorAll('.method-item').forEach(i => i.classList.remove('active'));
+            selected = name; document.querySelectorAll('.method-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
-            
-            if(mode === 'deposit') {
-                document.getElementById('adminNumBox').style.display = 'block';
-            }
+            if(mode === 'deposit') document.getElementById('adminNumBox').style.display = 'block';
         }
-
         function submitPay() {
             let a = parseFloat(document.getElementById('amtInp').value);
-            let trx = document.getElementById('trxInp').value;
-            let uNum = document.getElementById('userNumInp').value;
-
-            if(!selected || !a) return alert("তথ্য সঠিকভাবে দিন!");
-
-            if(mode === 'deposit') {
-                if(!trx) return alert("TrxID দিন!");
-                balance += a;
-                alert("ডিপোজিট রিকোয়েস্ট সফল! ভেরিফিকেশনের পর ব্যালেন্স যোগ হবে।");
-            } else {
-                if(!uNum) return alert("আপনার নাম্বার দিন!");
-                if(balance < a) return alert("ব্যালেন্স নেই!");
-                balance -= a;
-                alert(`৳${a} উইথড্র রিকোয়েস্ট ${uNum} নাম্বারে পাঠানো হয়েছে।`);
-            }
-            updateBalance();
-            closeModal();
+            if(!selected || !a) return alert("তথ্য দিন!");
+            if(mode === 'deposit') { balance += a; alert("ডিপোজিট সফল!"); }
+            else { if(balance < a) return alert("ব্যালেন্স নেই!"); balance -= a; alert("উইথড্র রিকোয়েস্ট পাঠানো হয়েছে!"); }
+            updateBalance(); closeModal();
         }
     </script>
 </body>
