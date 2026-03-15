@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Roulette Game</title>
+    <style>
+        body { background: #222; color: white; text-align: center; font-family: sans-serif; }
+        .wheel { width: 200px; height: 200px; border-radius: 50%; border: 10px solid #555; display: inline-block; line-height: 200px; font-size: 30px; margin: 20px; }
+        .red { background: red; }
+        .black { background: black; }
+    </style>
+</head>
+<body>
+    <h1>🎡 রুলেট হুইল 🎡</h1>
+    <div id="wheel" class="wheel">?</div>
+    <br>
+    <button onclick="play('RED')" style="background:red; color:white; padding:10px;">RED (লাল)</button>
+    <button onclick="play('BLACK')" style="background:black; color:white; padding:10px;">BLACK (কালো)</button>
+    <h2 id="res"></h2>
+
+    <script>
+        function play(choice) {
+            const colors = ['RED', 'BLACK'];
+            const winColor = colors[Math.floor(Math.random() * colors.length)];
+            const wheel = document.getElementById('wheel');
+            wheel.innerText = winColor;
+            wheel.style.backgroundColor = winColor.toLowerCase();
+
+            if(choice === winColor) {
+                document.getElementById('res').innerText = "সঠিক! আপনি জিতেছেন!";
+            } else {
+                document.getElementById('res').innerText = "ভুল! আপনি হেরেছেন।";
+            }
+        }
+    </script>
+</body>
+</html>
