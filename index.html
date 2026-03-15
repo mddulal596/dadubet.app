@@ -7,6 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .category-section { margin-bottom: 30px; }
+        .category-title {
+            padding: 0 15px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .category-title i { font-size: 14px; }
+    </style>
 </head>
 <body>
 
@@ -29,14 +43,32 @@
             <button class="action-btn wit-btn" onclick="openModal('withdraw')"><i class="fas fa-wallet"></i> উইথড্র</button>
         </div>
 
-        <div class="section-header"><span>🔥 সকল গেমস</span></div>
-        <div class="game-grid">
-            <div class="game-card" onclick="location.href='aviator.html'"><div class="badge">HOT</div><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=200"><div class="game-label">Aviator ✈️</div></div>
-            <div class="game-card" onclick="location.href='mines.html'"><img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=200"><div class="game-label">Mines 💎</div></div>
-            <div class="game-card" onclick="location.href='dragon-tiger.html'"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=200"><div class="game-label">Dragon Tiger 🐲</div></div>
-            <div class="game-card" onclick="location.href='roulette.html'"><img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=200"><div class="game-label">Roulette 🎡</div></div>
-            <div class="game-card" onclick="location.href='plinko.html'"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=200"><div class="game-label">Plinko 💎</div></div>
-            <div class="game-card" onclick="location.href='head-tail.html'"><img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=200"><div class="game-label">Head Tail 🪙</div></div>
+        <div class="category-section">
+            <div class="category-title"><i class="fas fa-star"></i> DADUBET ORIGINALS</div>
+            <div class="game-grid">
+                <div class="game-card" onclick="location.href='aviator.html'"><div class="badge">HOT</div><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=200"><div class="game-label">Aviator ✈️</div></div>
+                <div class="game-card" onclick="location.href='mines.html'"><img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=200"><div class="game-label">Mines 💎</div></div>
+                <div class="game-card" onclick="location.href='plinko.html'"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=200"><div class="game-label">Plinko 💎</div></div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="category-title"><i class="fas fa-broadcast-tower"></i> LIVE CASINO</div>
+            <div class="game-grid">
+                <div class="game-card" onclick="location.href='dragon-tiger.html'"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=200"><div class="game-label">Dragon Tiger 🐲</div></div>
+                <div class="game-card" onclick="location.href='roulette.html'"><img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=200"><div class="game-label">Roulette 🎡</div></div>
+                <div class="game-card" onclick="location.href='slots.html'"><img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=200"><div class="game-label">Slots 🎰</div></div>
+            </div>
+        </div>
+
+        <div class="category-section">
+            <div class="category-title"><i class="fas fa-bolt"></i> INSTANT PLAY</div>
+            <div class="game-grid">
+                <div class="game-card" onclick="location.href='head-tail.html'"><img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=200"><div class="game-label">Head Tail 🪙</div></div>
+                <div class="game-card" onclick="location.href='dice.html'"><img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=200"><div class="game-label">Dice Roll 🎲</div></div>
+                <div class="game-card" onclick="location.href='card-flip.html'"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=200"><div class="game-label">Card Flip 🃏</div></div>
+                <div class="game-card" onclick="location.href='number-roulette.html'"><img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?w=200"><div class="game-label">Lucky 10 🎡</div></div>
+            </div>
         </div>
     </main>
 
@@ -47,9 +79,7 @@
                 <div class="method-item" onclick="selectMethod('Bkash', this)"><img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg"></div>
                 <div class="method-item" onclick="selectMethod('Nagad', this)"><img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png"></div>
             </div>
-            <div id="adminNumBox" style="display:none;" class="admin-num">
-                টাকা পাঠানোর নাম্বার: <br><b style="color:#ffcc00; font-size: 18px;">01917044596</b>
-            </div>
+            <div id="adminNumBox" style="display:none;" class="admin-num">টাকা পাঠানোর নাম্বার:<br><b style="color:#ffcc00; font-size: 18px;">01917044596</b></div>
             <input type="number" id="amtInp" placeholder="টাকার পরিমাণ (৳)">
             <input type="text" id="trxInp" placeholder="TrxID (ট্রানজেকশন আইডি)">
             <input type="number" id="userNumInp" placeholder="আপনার বিকাশ/নগদ নাম্বার" style="display:none;">
@@ -69,9 +99,11 @@
         let balance = 500.00; let mode = ''; let selected = '';
         function updateBalance() { document.getElementById('balanceDisplay').innerText = balance.toFixed(2); }
         function openModal(m) {
-            mode = m; document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
+            mode = m; selected = '';
+            document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
             document.getElementById('trxInp').style.display = m === 'deposit' ? 'block' : 'none';
             document.getElementById('userNumInp').style.display = m === 'withdraw' ? 'block' : 'none';
+            document.getElementById('adminNumBox').style.display = 'none';
             document.getElementById('paymentModal').style.display = 'flex';
         }
         function closeModal() { document.getElementById('paymentModal').style.display = 'none'; }
@@ -83,10 +115,10 @@
         function submitPay() {
             let a = parseFloat(document.getElementById('amtInp').value);
             if(!selected || !a) return alert("তথ্য দিন!");
-            if(mode === 'deposit') { balance += a; alert("ডিপোজিট সফল!"); }
-            else { if(balance < a) return alert("ব্যালেন্স নেই!"); balance -= a; alert("উইথড্র রিকোয়েস্ট পাঠানো হয়েছে!"); }
+            if(mode === 'deposit') { balance += a; alert("ডিপোজিট রিকোয়েস্ট পাঠানো হয়েছে!"); }
+            else { if(balance < a) return alert("ব্যালেন্স নেই!"); balance -= a; alert("উইথড্র রিকোয়েস্ট সফল!"); }
             updateBalance(); closeModal();
         }
     </script>
 </body>
-</html>
+                                                                                                                                                                                         </html>
