@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Flip - DaduBet</title>
+    <style>
+        body { background: #0b1118; color: white; text-align: center; }
+        .card { width: 120px; height: 180px; background: white; color: black; border-radius: 10px; font-size: 50px; line-height: 180px; margin: 30px auto; }
+        button { padding: 10px 20px; margin: 5px; background: #e91e63; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>High or Low 🃏</h1>
+    <div id="currentCard" class="card">7</div>
+    <button onclick="play('high')">বেশি (High)</button>
+    <button onclick="play('low')">কম (Low)</button>
+    <h2 id="res"></h2>
+
+    <script>
+        let currentVal = 7;
+        function play(guess) {
+            const nextVal = Math.floor(Math.random() * 13) + 1;
+            const res = document.getElementById('res');
+            if((guess === 'high' && nextVal > currentVal) || (guess === 'low' && nextVal < currentVal)) {
+                res.innerText = `পরের কার্ড ছিল ${nextVal}: আপনি জিতেছেন!`;
+            } else {
+                res.innerText = `পরের কার্ড ছিল ${nextVal}: আপনি হেরেছেন!`;
+            }
+            currentVal = nextVal;
+            document.getElementById('currentCard').innerText = nextVal;
+        }
+    </script>
+</body>
+</html>
