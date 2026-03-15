@@ -2,35 +2,52 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Dragon vs Tiger</title>
+    <title>Dragon vs Tiger Pro</title>
     <style>
-        body { background: #1a0000; color: white; text-align: center; }
-        .card-box { display: flex; justify-content: center; gap: 50px; margin-top: 50px; }
-        .card { width: 100px; height: 150px; border: 2px solid white; border-radius: 10px; font-size: 40px; line-height: 150px; background: #333; }
-        .dragon { color: red; } .tiger { color: orange; }
+        body { background: #0a2d1d; color: white; text-align: center; font-family: 'Arial', sans-serif; }
+        .table { width: 90%; max-width: 500px; margin: 50px auto; background: #114d31; padding: 30px; border: 8px solid #8d6e63; border-radius: 50px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .cards { display: flex; justify-content: space-around; margin: 30px 0; }
+        .card { width: 80px; height: 120px; background: white; border-radius: 10px; color: black; font-size: 40px; line-height: 120px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .bet-buttons { display: flex; justify-content: center; gap: 10px; }
+        .btn { padding: 15px 25px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .btn-dragon { background: #d32f2f; color: white; }
+        .btn-tiger { background: #ff9800; color: white; }
     </style>
 </head>
 <body>
-    <h1>Dragon vs Tiger 🐲🐯</h1>
-    <div class="card-box">
-        <div><h3>DRAGON</h3><div id="dCard" class="card dragon">?</div></div>
-        <div><h3>TIGER</h3><div id="tCard" class="card tiger">?</div></div>
+    <div class="table">
+        <h2 style="color: #ffcc00;">Dragon vs Tiger</h2>
+        <div class="cards">
+            <div><p>DRAGON</p><div id="dCard" class="card">?</div></div>
+            <div><p>TIGER</p><div id="tCard" class="card">?</div></div>
+        </div>
+        <div class="bet-buttons">
+            <button class="btn btn-dragon" onclick="play('dragon')">DRAGON</button>
+            <button class="btn btn-tiger" onclick="play('tiger')">TIGER</button>
+        </div>
+        <p id="res" style="margin-top: 20px; font-size: 20px;"></p>
     </div>
-    <br>
-    <button onclick="play('dragon')" style="padding:10px 20px;">Dragon এ বাজি</button>
-    <button onclick="play('tiger')" style="padding:10px 20px;">Tiger এ বাজি</button>
 
     <script>
-        function play(bet) {
-            let dVal = Math.floor(Math.random() * 13) + 1;
-            let tVal = Math.floor(Math.random() * 13) + 1;
-            document.getElementById('dCard').innerText = dVal;
-            document.getElementById('tCard').innerText = tVal;
-
-            let winner = dVal > tVal ? 'dragon' : (tVal > dVal ? 'tiger' : 'tie');
-            if (bet === winner) alert("অভিনন্দন! আপনি জিতেছেন।");
-            else if (winner === 'tie') alert("ড্র হয়েছে (Tie)!");
-            else alert("দুঃখিত, আপনি হেরেছেন।");
+        function play(userBet) {
+            const d = Math.floor(Math.random() * 13) + 1;
+            const t = Math.floor(Math.random() * 13) + 1;
+            document.getElementById('dCard').innerText = d;
+            document.getElementById('tCard').innerText = t;
+            
+            let winner = d > t ? 'dragon' : (t > d ? 'tiger' : 'tie');
+            const res = document.getElementById('res');
+            
+            if(userBet === winner) {
+                res.innerText = "অভিনন্দন! আপনি জিতেছেন!";
+                res.style.color = "#ffcc00";
+            } else if(winner === 'tie') {
+                res.innerText = "গেম ড্র হয়েছে!";
+                res.style.color = "white";
+            } else {
+                res.innerText = "আপনি হেরে গেছেন!";
+                res.style.color = "#ff4d4d";
+            }
         }
     </script>
 </body>
