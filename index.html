@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DaduBet Pro - Betting System</title>
+    <title>DaduBet Pro - Premium Betting</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -15,71 +15,80 @@
         <div class="balance-box">৳ <span id="balanceDisplay">500.00</span></div>
     </header>
 
-    <div id="home" class="page-section active">
+    <main id="main-content">
+        
+        <div class="banner">
+            <div class="banner-content">
+                <h2>100% বোনাস 🎉</h2>
+                <p>প্রথম ডিপোজিটে দ্বিগুণ অফার!</p>
+                <button class="banner-btn">ক্লেইম করুন</button>
+            </div>
+        </div>
+
         <div class="wallet-actions">
-            <button class="action-btn dep-btn" onclick="openModal('deposit')">ডিপোজিট</button>
-            <button class="action-btn wit-btn" onclick="openModal('withdraw')">উইথড্র</button>
+            <button class="action-btn dep-btn" onclick="openModal('deposit')">
+                <i class="fas fa-plus-circle"></i> ডিপোজিট
+            </button>
+            <button class="action-btn wit-btn" onclick="openModal('withdraw')">
+                <i class="fas fa-wallet"></i> উইথড্র
+            </button>
         </div>
 
-        <div class="section-header">লাইভ গেম</div>
-        <div style="padding: 0 15px;">
-            <div style="background: linear-gradient(45deg, #1c2536, #0f1621); padding: 20px; border-radius: 15px; border: 1px solid var(--primary-blue); text-align: center; margin-bottom: 20px;">
-                <h3 style="color: var(--accent-gold); margin-bottom: 10px;">Lucky Number (2X Win)</h3>
-                <p style="font-size: 11px; color: var(--text-dim); margin-bottom: 15px;">১ থেকে ১০ এর মধ্যে একটি নাম্বার বাছুন</p>
-                
-                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
-                    <input type="number" id="betNumber" placeholder="নাম্বার" style="width: 80px; padding: 10px; border-radius: 5px; border: none; text-align: center;">
-                    <input type="number" id="betAmount" placeholder="টাকা (৳)" style="width: 100px; padding: 10px; border-radius: 5px; border: none; text-align: center;">
-                </div>
-                
-                <button class="action-btn dep-btn" onclick="playGame()" style="width: 100%; max-width: 200px;">বাজি ধরুন (Bet)</button>
-                <p id="gameResult" style="margin-top: 15px; font-weight: bold;"></p>
-            </div>
+        <div class="section-header">
+            <span>🔥 জনপ্রিয় গেমস</span>
+            <a href="#">সব দেখুন</a>
         </div>
 
-        <div class="section-header">সব গেম</div>
         <div class="game-grid">
-            <div class="game-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9S9YvQ_V7V8zL3O8_7Z9B9Y3Y_V7V8zL3O8&s"><div class="game-label">Sweet Bonanza</div></div>
-            <div class="game-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7Q8&s"><div class="game-label">Gates of Olympus</div></div>
-        </div>
-    </div>
+            <div class="game-card" onclick="location.href='aviator.html'">
+                <div class="badge">HOT</div>
+                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=200&auto=format&fit=crop" alt="Aviator">
+                <div class="game-label">Aviator ✈️</div>
+            </div>
 
-    <div id="categories" class="page-section">
-        <div id="cat-main">
-            <div class="category-list">
-                <div class="cat-card" onclick="showCatGames('Slots')"><i class="fas fa-gamepad"></i>Slots</div>
-                <div class="cat-card" onclick="showCatGames('Live')"><i class="fas fa-video"></i>Live Casino</div>
+            <div class="game-card" onclick="location.href='mines.html'">
+                <img src="https://images.unsplash.com/photo-1628268909376-e8c44bb3153f?q=80&w=200&auto=format&fit=crop" alt="Mines">
+                <div class="game-label">Mines 💎</div>
+            </div>
+
+            <div class="game-card" onclick="location.href='dragon-tiger.html'">
+                <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=200&auto=format&fit=crop" alt="Dragon Tiger">
+                <div class="game-label">Dragon Tiger 🐲</div>
+            </div>
+
+            <div class="game-card" onclick="location.href='roulette.html'">
+                <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=200&auto=format&fit=crop" alt="Roulette">
+                <div class="game-label">Roulette 🎡</div>
             </div>
         </div>
-        <div id="cat-detail" style="display:none; padding-bottom: 20px;">
-            <div style="padding: 15px;"><button class="action-btn" style="background:#2d3a4f; color:white; width:auto; padding:5px 15px;" onclick="hideCatGames()">back</button></div>
-            <div class="game-grid" id="cat-game-grid"></div>
-        </div>
-    </div>
-    <div id="mycasino" class="page-section"><div style="text-align:center; padding:50px; color:gray;">প্রিয় কোনো গেম নেই</div></div>
-    <div id="menu" class="page-section"><div style="padding:20px;"><div style="background:#1c2536; padding:15px; border-radius:10px;">ID: 596044 (Verified)</div></div></div>
+    </main>
 
     <div id="paymentModal" class="modal">
         <div class="modal-content">
-            <h3 id="modalTitle">ডিপোজিট</h3>
+            <h3 id="modalTitle">পেমেন্ট</h3>
             <div class="payment-methods">
-                <div class="method-item" onclick="selectMethod('Bkash', this)"><img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg"><span>বিকাশ</span></div>
-                <div class="method-item" onclick="selectMethod('Nagad', this)"><img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png"><span>নগদ</span></div>
+                <div class="method-item" onclick="selectMethod('Bkash', this)">
+                    <img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg">
+                </div>
+                <div class="method-item" onclick="selectMethod('Nagad', this)">
+                    <img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png">
+                </div>
             </div>
-            <div id="adminNumBox" style="display:none; padding:10px; border-radius:8px; margin-bottom:10px; border:1px dashed orange; font-size:12px;">পাঠানোর নাম্বার: <b style="color:orange;">01917044596</b></div>
-            <input type="number" id="amtInp" placeholder="টাকার পরিমাণ">
-            <input type="text" id="trxInp" placeholder="TrxID">
-            <input type="number" id="userNumInp" placeholder="আপনার নাম্বার" style="display:none;">
-            <button class="action-btn dep-btn" onclick="submitPay()">কনফার্ম</button>
-            <button class="action-btn" style="background:#334155; margin-top:8px; color:white;" onclick="closeModal()">বাতিল</button>
+            <div id="adminNumBox" style="display:none;" class="admin-num">
+                পাঠানোর নাম্বার: <b>01917044596</b>
+            </div>
+            <input type="number" id="amtInp" placeholder="টাকার পরিমাণ (৳)">
+            <input type="text" id="trxInp" placeholder="TrxID (ট্রানজেকশন আইডি)">
+            <button class="submit-btn" onclick="submitPay()">কনফার্ম করুন</button>
+            <button class="close-btn" onclick="closeModal()">বাতিল</button>
         </div>
     </div>
 
     <nav class="nav-bar">
-        <div class="nav-item active" onclick="navTo('home', this)"><i class="fas fa-home"></i>Home</div>
-        <div class="nav-item" onclick="navTo('categories', this)"><i class="fas fa-th-large"></i>Categories</div>
-        <div class="nav-item" onclick="navTo('mycasino', this)"><i class="fas fa-heart"></i>My Casino</div>
-        <div class="nav-item" onclick="navTo('menu', this)"><i class="fas fa-bars"></i>Menu</div>
+        <div class="nav-item active"><i class="fas fa-home"></i>Home</div>
+        <div class="nav-item"><i class="fas fa-gamepad"></i>Games</div>
+        <div class="nav-item"><i class="fas fa-history"></i>History</div>
+        <div class="nav-item"><i class="fas fa-user-circle"></i>Profile</div>
     </nav>
 
     <script>
@@ -87,58 +96,19 @@
         let mode = ''; 
         let selected = '';
 
-        // বাজি ধরার সিস্টেম
-        function playGame() {
-            let betNum = parseInt(document.getElementById('betNumber').value);
-            let betAmt = parseFloat(document.getElementById('betAmount').value);
-            let resultText = document.getElementById('gameResult');
-
-            if (isNaN(betNum) || betNum < 1 || betNum > 10) { alert("১ থেকে ১০ এর মধ্যে নাম্বার দিন!"); return; }
-            if (isNaN(betAmt) || betAmt < 10) { alert("সর্বনিম্ন বাজি ১০ টাকা!"); return; }
-            if (betAmt > balance) { alert("পর্যাপ্ত ব্যালেন্স নেই!"); return; }
-
-            // ব্যালেন্স কাটা
-            balance -= betAmt;
-            updateBalance();
-
-            resultText.innerText = "বল ঘুরছে...";
-            resultText.style.color = "white";
-
-            setTimeout(() => {
-                let winNum = Math.floor(Math.random() * 10) + 1;
-                if (betNum === winNum) {
-                    let winAmt = betAmt * 2;
-                    balance += winAmt;
-                    resultText.innerText = `অভিনন্দন! উইন নাম্বার ছিল ${winNum}। আপনি পেয়েছেন ৳${winAmt}`;
-                    resultText.style.color = "#4caf50";
-                } else {
-                    resultText.innerText = `দুঃখিত! উইন নাম্বার ছিল ${winNum}। আবার চেষ্টা করুন।`;
-                    resultText.style.color = "#f44336";
-                }
-                updateBalance();
-            }, 1500);
-        }
-
         function updateBalance() {
             document.getElementById('balanceDisplay').innerText = balance.toFixed(2);
         }
 
-        function navTo(id, el) {
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            el.classList.add('active');
-        }
-
         function openModal(m) {
-            mode = m; selected = '';
-            document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
-            document.getElementById('trxInp').style.display = m === 'deposit' ? 'block' : 'none';
-            document.getElementById('userNumInp').style.display = m === 'withdraw' ? 'block' : 'none';
+            mode = m;
+            document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট' : 'উইথড্র';
             document.getElementById('paymentModal').style.display = 'flex';
         }
 
-        function closeModal() { document.getElementById('paymentModal').style.display = 'none'; }
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
 
         function selectMethod(name, el) {
             selected = name;
@@ -149,28 +119,19 @@
 
         function submitPay() {
             let a = parseFloat(document.getElementById('amtInp').value);
-            if(!selected || !a) return alert("তথ্য দিন!");
+            if(!selected || !a) return alert("সব তথ্য পূরণ করুন!");
+            
             if(mode === 'withdraw') {
-                if(balance < a) return alert("ব্যালেন্স নেই!");
-                balance -= a; alert("উইথড্র রিকোয়েস্ট পাঠানো হয়েছে!");
+                if(balance < a) return alert("পর্যাপ্ত ব্যালেন্স নেই!");
+                balance -= a;
+                alert("উইথড্র রিকোয়েস্ট সফল হয়েছে!");
             } else {
-                balance += a; // ডেমো হিসেবে সাথে সাথে যোগ হচ্ছে
+                balance += a;
                 alert("ডিপোজিট সফল!");
             }
             updateBalance();
             closeModal();
         }
-
-        function showCatGames(c) {
-            document.getElementById('cat-main').style.display = 'none';
-            document.getElementById('cat-detail').style.display = 'block';
-            let g = document.getElementById('cat-game-grid'); g.innerHTML = '';
-            // Demo games load
-            for(let i=0; i<4; i++) {
-                g.innerHTML += `<div class="game-card"><img src="https://picsum.photos/id/${i+20}/300/200"><div class="game-label">${c} Game ${i+1}</div></div>`;
-            }
-        }
-        function hideCatGames() { document.getElementById('cat-main').style.display = 'block'; document.getElementById('cat-detail').style.display = 'none'; }
     </script>
 </body>
 </html>
