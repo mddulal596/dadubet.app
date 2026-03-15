@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Slots - DaduBet</title>
+    <style>
+        body { background: #0b1118; color: white; text-align: center; }
+        .slots { display: flex; justify-content: center; gap: 10px; margin: 40px 0; }
+        .slot { width: 70px; height: 70px; background: #1c2536; border: 2px solid #ffcc00; font-size: 40px; line-height: 70px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Lucky Slots 🎰</h1>
+    <div class="slots">
+        <div id="s1" class="slot">❓</div>
+        <div id="s2" class="slot">❓</div>
+        <div id="s3" class="slot">❓</div>
+    </div>
+    <button onclick="spin()" style="padding:15px 40px; background: gold; font-weight:bold; cursor:pointer;">স্পিন (৳৫০)</button>
+    <h2 id="res"></h2>
+
+    <script>
+        const icons = ['🍎', '🍋', '🍒', '💎', '🔔'];
+        function spin() {
+            const r1 = icons[Math.floor(Math.random() * 5)];
+            const r2 = icons[Math.floor(Math.random() * 5)];
+            const r3 = icons[Math.floor(Math.random() * 5)];
+            document.getElementById('s1').innerText = r1;
+            document.getElementById('s2').innerText = r2;
+            document.getElementById('s3').innerText = r3;
+            if(r1 === r2 && r2 === r3) document.getElementById('res').innerText = "JACKPOT! আপনি ১০ গুণ জিতেছেন! 💰";
+            else document.getElementById('res').innerText = "আবার চেষ্টা করুন।";
+        }
+    </script>
+</body>
+</html>
