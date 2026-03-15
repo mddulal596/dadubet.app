@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Dragon vs Tiger</title>
+    <style>
+        body { background: #1a0000; color: white; text-align: center; }
+        .card-box { display: flex; justify-content: center; gap: 50px; margin-top: 50px; }
+        .card { width: 100px; height: 150px; border: 2px solid white; border-radius: 10px; font-size: 40px; line-height: 150px; background: #333; }
+        .dragon { color: red; } .tiger { color: orange; }
+    </style>
+</head>
+<body>
+    <h1>Dragon vs Tiger 🐲🐯</h1>
+    <div class="card-box">
+        <div><h3>DRAGON</h3><div id="dCard" class="card dragon">?</div></div>
+        <div><h3>TIGER</h3><div id="tCard" class="card tiger">?</div></div>
+    </div>
+    <br>
+    <button onclick="play('dragon')" style="padding:10px 20px;">Dragon এ বাজি</button>
+    <button onclick="play('tiger')" style="padding:10px 20px;">Tiger এ বাজি</button>
+
+    <script>
+        function play(bet) {
+            let dVal = Math.floor(Math.random() * 13) + 1;
+            let tVal = Math.floor(Math.random() * 13) + 1;
+            document.getElementById('dCard').innerText = dVal;
+            document.getElementById('tCard').innerText = tVal;
+
+            let winner = dVal > tVal ? 'dragon' : (tVal > dVal ? 'tiger' : 'tie');
+            if (bet === winner) alert("অভিনন্দন! আপনি জিতেছেন।");
+            else if (winner === 'tie') alert("ড্র হয়েছে (Tie)!");
+            else alert("দুঃখিত, আপনি হেরেছেন।");
+        }
+    </script>
+</body>
+</html>
