@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack Game</title>
+    <style>
+        body { background: #004d00; color: white; text-align: center; font-family: sans-serif; }
+        .card-area { font-size: 24px; margin: 20px; padding: 20px; border: 2px dashed white; }
+        button { padding: 10px 20px; margin: 5px; font-size: 18px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>♠️ ব্ল্যাকজ্যাক ২১ ♠️</h1>
+    <div class="card-area">
+        <p>আপনার কার্ডের যোগফল: <span id="sum">০</span></p>
+        <p id="cards">কার্ডগুলো: </p>
+    </div>
+    <button onclick="newCard()">নতুন কার্ড নিন</button>
+    <button onclick="restart()">রিস্টার্ট</button>
+    <h2 id="status"></h2>
+
+    <script>
+        let sum = 0;
+        function newCard() {
+            const card = Math.floor(Math.random() * 10) + 2;
+            sum += card;
+            document.getElementById('cards').innerText += card + "  ";
+            document.getElementById('sum').innerText = sum;
+            if(sum > 21) {
+                document.getElementById('status').innerText = "আপনি হেরে গেছেন! (২১ এর বেশি)";
+            } else if(sum === 21) {
+                document.getElementById('status').innerText = "ব্ল্যাকজ্যাক! আপনি জিতেছেন! 🎉";
+            }
+        }
+        function restart() { location.reload(); }
+    </script>
+</body>
+</html>
