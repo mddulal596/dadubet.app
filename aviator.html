@@ -2,58 +2,77 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Aviator Crash</title>
+    <title>Aviator Pro</title>
     <style>
-        body { background: #0f1621; color: white; text-align: center; font-family: sans-serif; }
-        .game-box { margin: 50px auto; width: 300px; padding: 30px; border: 2px solid #e91e63; border-radius: 20px; }
-        #multiplier { font-size: 50px; color: #ff0055; margin: 20px 0; }
-        button { padding: 15px 30px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; }
-        .bet-btn { background: #e91e63; color: white; }
-        .cash-btn { background: #4caf50; color: white; display: none; }
+        body { background: #0b1118; color: white; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .game-area { width: 90%; max-width: 400px; background: #1c2536; padding: 20px; border-radius: 20px; text-align: center; border-bottom: 5px solid #e91e63; }
+        .chart-area { height: 200px; background: #0f1621; border-radius: 15px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        #multi { font-size: 60px; font-weight: bold; color: white; text-shadow: 0 0 20px #e91e63; z-index: 2; }
+        .plane { position: absolute; bottom: 20px; left: 20px; font-size: 40px; transition: 0.1s; z-index: 1; }
+        .btn { width: 100%; padding: 15px; font-size: 20px; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; text-transform: uppercase; }
+        .bet-btn { background: #e91e63; color: white; box-shadow: 0 5px 0 #ad1457; }
+        .cash-btn { background: #ffc107; color: black; box-shadow: 0 5px 0 #ffa000; display: none; }
     </style>
 </head>
 <body>
-    <div class="game-box">
-        <h2>Aviator ✈️</h2>
-        <div id="multiplier">1.00x</div>
-        <button id="betBtn" class="bet-btn" onclick="startFly()">Start (৳১০)</button>
-        <button id="cashBtn" class="cash-btn" onclick="cashOut()">Cash Out</button>
-        <p id="msg"></p>
+    <div class="game-area">
+        <h2 style="color: #e91e63;">AVIATOR ✈️</h2>
+        <div class="chart-area">
+            <div id="multi">1.00x</div>
+            <div id="plane" class="plane">✈️</div>
+        </div>
+        <button id="mainBtn" class="btn bet-btn" onclick="startGame()">Bet (৳10)</button>
+        <p id="msg" style="margin-top: 15px; color: #8899a6;"></p>
     </div>
 
     <script>
         let multi = 1.00;
         let timer;
-        let isFlying = false;
+        let running = false;
 
-        function startFly() {
+        function startGame() {
+            if(running) return;
+            running = true;
             multi = 1.00;
-            isFlying = true;
-            document.getElementById('betBtn').style.display = 'none';
-            document.getElementById('cashBtn').style.display = 'inline-block';
-            document.getElementById('msg').innerText = "প্লেন উড়ছে...";
+            const btn = document.getElementById('mainBtn');
+            const plane = document.getElementById('plane');
+            btn.innerText = "Cash Out";
+            btn.className = "btn cash-btn";
+            btn.onclick = cashOut;
             
-            let crashPoint = (Math.random() * 4 + 1.1).toFixed(2); 
-
+            let crashPoint = (Math.random() * 3 + 1.2).toFixed(2);
+            
             timer = setInterval(() => {
-                multi += 0.05;
-                document.getElementById('multiplier').innerText = multi.toFixed(2) + "x";
+                multi += 0.02;
+                document.getElementById('multi').innerText = multi.toFixed(2) + "x";
+                plane.style.bottom = (multi * 20) + "px";
+                plane.style.left = (multi * 20) + "px";
 
                 if (multi >= crashPoint) {
                     clearInterval(timer);
-                    isFlying = false;
-                    document.getElementById('multiplier').innerText = "CRASHED! 💥";
-                    document.getElementById('cashBtn').style.display = 'none';
-                    document.getElementById('betBtn').style.display = 'inline-block';
+                    btn.innerText = "Crashed!";
+                    btn.disabled = true;
+                    setTimeout(resetGame, 2000);
                 }
             }, 100);
         }
 
         function cashOut() {
-            if (!isFlying) return;
             clearInterval(timer);
-            alert("অভিনন্দন! আপনি " + multi.toFixed(2) + "x লাভ করেছেন।");
-            location.reload();
+            alert("অভিনন্দন! আপনি জিতেছেন ৳" + (10 * multi).toFixed(2));
+            resetGame();
+        }
+
+        function resetGame() {
+            running = false;
+            const btn = document.getElementById('mainBtn');
+            btn.innerText = "Bet (৳10)";
+            btn.className = "btn bet-btn";
+            btn.disabled = false;
+            btn.onclick = startGame;
+            document.getElementById('multi').innerText = "1.00x";
+            document.getElementById('plane').style.bottom = "20px";
+            document.getElementById('plane').style.left = "20px";
         }
     </script>
 </body>
