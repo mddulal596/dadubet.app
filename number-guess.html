@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Guessing - DaduBet</title>
+    <style>
+        body { background: #0b1118; color: white; text-align: center; }
+        .box-container { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+        .num-box { width: 50px; height: 50px; background: #2d3a4f; line-height: 50px; font-size: 20px; border-radius: 10px; cursor: pointer; border: 2px solid transparent; }
+        .num-box:hover { border-color: #00d4ff; }
+    </style>
+</head>
+<body>
+    <h1>লাকি নম্বর (৫ গুণ উইন) 🍀</h1>
+    <p>১ থেকে ৫ এর মধ্যে একটি নম্বর বাছুন:</p>
+    <div class="box-container">
+        <div class="num-box" onclick="guess(1)">1</div>
+        <div class="num-box" onclick="guess(2)">2</div>
+        <div class="num-box" onclick="guess(3)">3</div>
+        <div class="num-box" onclick="guess(4)">4</div>
+        <div class="num-box" onclick="guess(5)">5</div>
+    </div>
+    <h2 id="guess-res" style="margin-top: 30px;"></h2>
+
+    <script>
+        function guess(num) {
+            const winNum = Math.floor(Math.random() * 5) + 1;
+            const res = document.getElementById('guess-res');
+            
+            if(num === winNum) {
+                res.innerHTML = `উইন নম্বর ছিল ${winNum}। <br> <span style="color:lime">আপনি ৫ গুণ জিতেছেন! 💰</span>`;
+            } else {
+                res.innerHTML = `উইন নম্বর ছিল ${winNum}। <br> <span style="color:red">আবার চেষ্টা করুন!</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
