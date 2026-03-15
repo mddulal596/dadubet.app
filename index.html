@@ -74,11 +74,17 @@
                     <img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png">
                 </div>
             </div>
+
             <div id="adminNumBox" style="display:none;" class="admin-num">
-                পাঠানোর নাম্বার: <b>01917044596</b>
+                টাকা পাঠানোর নাম্বার (Personal): <br>
+                <b style="color:#ffcc00; font-size: 18px;">01917044596</b>
             </div>
+
             <input type="number" id="amtInp" placeholder="টাকার পরিমাণ (৳)">
+            
             <input type="text" id="trxInp" placeholder="TrxID (ট্রানজেকশন আইডি)">
+            <input type="number" id="userNumInp" placeholder="আপনার বিকাশ/নগদ নাম্বার" style="display:none;">
+
             <button class="submit-btn" onclick="submitPay()">কনফার্ম করুন</button>
             <button class="close-btn" onclick="closeModal()">বাতিল</button>
         </div>
@@ -92,7 +98,7 @@
     </nav>
 
     <script>
-        let balance = 500;
+        let balance = 500.00;
         let mode = ''; 
         let selected = '';
 
@@ -102,7 +108,15 @@
 
         function openModal(m) {
             mode = m;
-            document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট' : 'উইথড্র';
+            selected = '';
+            document.querySelectorAll('.method-item').forEach(i => i.classList.remove('active'));
+            document.getElementById('modalTitle').innerText = m === 'deposit' ? 'ডিপোজিট করুন' : 'উইথড্র করুন';
+            
+            // UI Toggle
+            document.getElementById('trxInp').style.display = m === 'deposit' ? 'block' : 'none';
+            document.getElementById('userNumInp').style.display = m === 'withdraw' ? 'block' : 'none';
+            document.getElementById('adminNumBox').style.display = 'none';
+            
             document.getElementById('paymentModal').style.display = 'flex';
         }
 
@@ -114,20 +128,28 @@
             selected = name;
             document.querySelectorAll('.method-item').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
-            document.getElementById('adminNumBox').style.display = mode === 'deposit' ? 'block' : 'none';
+            
+            if(mode === 'deposit') {
+                document.getElementById('adminNumBox').style.display = 'block';
+            }
         }
 
         function submitPay() {
             let a = parseFloat(document.getElementById('amtInp').value);
-            if(!selected || !a) return alert("সব তথ্য পূরণ করুন!");
-            
-            if(mode === 'withdraw') {
-                if(balance < a) return alert("পর্যাপ্ত ব্যালেন্স নেই!");
-                balance -= a;
-                alert("উইথড্র রিকোয়েস্ট সফল হয়েছে!");
-            } else {
+            let trx = document.getElementById('trxInp').value;
+            let uNum = document.getElementById('userNumInp').value;
+
+            if(!selected || !a) return alert("তথ্য সঠিকভাবে দিন!");
+
+            if(mode === 'deposit') {
+                if(!trx) return alert("TrxID দিন!");
                 balance += a;
-                alert("ডিপোজিট সফল!");
+                alert("ডিপোজিট রিকোয়েস্ট সফল! ভেরিফিকেশনের পর ব্যালেন্স যোগ হবে।");
+            } else {
+                if(!uNum) return alert("আপনার নাম্বার দিন!");
+                if(balance < a) return alert("ব্যালেন্স নেই!");
+                balance -= a;
+                alert(`৳${a} উইথড্র রিকোয়েস্ট ${uNum} নাম্বারে পাঠানো হয়েছে।`);
             }
             updateBalance();
             closeModal();
