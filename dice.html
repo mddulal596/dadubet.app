@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Lucky Dice - DaduBet</title>
+    <style>
+        body { background: #0b1118; color: white; text-align: center; font-family: sans-serif; }
+        .dice-container { display: flex; justify-content: center; gap: 20px; margin: 50px 0; }
+        .die { width: 80px; height: 80px; background: white; color: black; border-radius: 10px; font-size: 40px; line-height: 80px; font-weight: bold; }
+        button { padding: 15px 30px; background: #00d4ff; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Lucky Dice 🎲</h1>
+    <div class="dice-container">
+        <div id="die1" class="die">1</div>
+        <div id="die2" class="die">1</div>
+    </div>
+    <button onclick="roll()">রোল করুন (৳২০)</button>
+    <h2 id="res"></h2>
+
+    <script>
+        function roll() {
+            const d1 = Math.floor(Math.random() * 6) + 1;
+            const d2 = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('die1').innerText = d1;
+            document.getElementById('die2').innerText = d2;
+            const sum = d1 + d2;
+            const res = document.getElementById('res');
+            if(sum === 7 || sum === 11) res.innerText = `যোগফল ${sum}: আপনি জিতেছেন! 🎉`;
+            else res.innerText = `যোগফল ${sum}: আবার চেষ্টা করুন।`;
+        }
+    </script>
+</body>
+</html>
