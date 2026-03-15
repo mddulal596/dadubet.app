@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পয়েন্ট গেম - ডাইস রোল</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #0b1a27; color: white; padding-top: 40px; }
+        .container { background: #162a3d; width: 350px; margin: auto; padding: 20px; border-radius: 15px; border: 2px solid #00d4ff; box-shadow: 0px 0px 20px rgba(0, 212, 255, 0.3); }
+        .points-box { font-size: 24px; color: #ffcc00; font-weight: bold; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .dice { font-size: 100px; margin: 20px; color: #ffffff; transition: transform 0.2s; }
+        button { padding: 12px 25px; font-size: 18px; cursor: pointer; background-color: #00d4ff; color: #0b1a27; border: none; border-radius: 8px; font-weight: bold; }
+        button:disabled { background-color: #555; cursor: not-allowed; }
+        button:hover:not(:disabled) { background-color: #0099bb; }
+        #message { font-size: 20px; margin-top: 20px; min-height: 30px; }
+        .win { color: #00ff88; font-weight: bold; }
+        .loss { color: #ff4d4d; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>লাকি ডাইস 🎲</h1>
+        <div class="points-box">আপনার পয়েন্ট: <span id="total-points">100</span></div>
+        
+        <p style="font-size: 14px; color: #aaa;">রোল করতে ১০ পয়েন্ট লাগবে। <br> ৬ পেলে পাবেন ৫০ পয়েন্ট!</p>
+
+        <div id="dice-display" class="dice">🎲</div>
+        
+        <button id="roll-btn" onclick="playGame()">রোল করুন (-10)</button>
+
+        <div id="message"></div>
+        <button id="reset-btn" onclick="resetGame()" style="display:none; margin-top:15px; background-color:#ff4d4d;">আবার শুরু করুন</button>
+    </div>
+
+    <script>
+        let points = 100;
+        const diceIcons = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+
+        function playGame() {
+            if (points < 10) return;
+
+            // ১০ পয়েন্ট কেটে নেওয়া
+            points -= 10;
+            updateDisplay();
+
+            const messageEl = document.getElementById('message');
+            const diceEl = document.getElementById('dice-display');
+
+            // রোলিং অ্যানিমেশন ইফেক্ট
+            diceEl.style.transform = "rotate(360deg)";
+            
+            setTimeout(() => {
+                const result = Math.floor(Math.random() * 6) + 1;
+                diceEl.innerHTML = diceIcons[result - 1];
+                diceEl.style.transform = "rotate(0deg)";
+
+                if (result === 6) {
+                    points += 50;
+                    messageEl.innerHTML = `<span class="win">জ্যাকপট! আপনি ৬ পেয়েছেন (+৫০ পয়েন্ট)</span>`;
+                } else {
+                    messageEl.innerHTML = `<span class="loss">আপনি পেয়েছেন ${result}। আবার চেষ্টা করুন!</span>`;
+                }
+
+                updateDisplay();
+                checkGameOver();
+            }, 200);
+        }
+
+        function updateDisplay() {
+            document.getElementById('total-points').innerText = points;
+        }
+
+        function checkGameOver() {
+            if (points < 10) {
+                document.getElementById('message').innerHTML = `<span class="loss">গেম ওভার! আপনার পয়েন্ট শেষ।</span>`;
+                document.getElementById('roll-btn').disabled = true;
+                document.getElementById('reset-btn').style.display = "inline-block";
+            }
+        }
+
+        function resetGame() {
+            points = 100;
+            updateDisplay();
+            document.getElementById('message').innerText = "";
+            document.getElementById('roll-btn').disabled = false;
+            document.getElementById('reset-btn').style.display = "none";
+            document.getElementById('dice-display').innerHTML = "🎲";
+        }
+    </script>
+
+</body>
+  </html>
