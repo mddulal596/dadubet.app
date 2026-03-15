@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Plinko - DaduBet</title>
+    <style>
+        body { background: #0b1118; color: white; text-align: center; font-family: sans-serif; }
+        .plinko-board { width: 300px; height: 350px; background: #1c2536; margin: 20px auto; border-radius: 15px; position: relative; border: 2px solid #00d4ff; overflow: hidden; }
+        .slots { display: flex; justify-content: space-around; position: absolute; bottom: 10px; width: 100%; }
+        .slot { background: #ffcc00; color: black; padding: 5px; border-radius: 5px; font-weight: bold; width: 40px; }
+        #ball { width: 15px; height: 15px; background: red; border-radius: 50%; position: absolute; top: 20px; left: 142px; display: none; }
+        button { padding: 12px 25px; background: #00d4ff; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Plinko 💎</h1>
+    <div class="plinko-board">
+        <div id="ball"></div>
+        <div class="slots">
+            <div class="slot">0.5x</div>
+            <div class="slot">2.0x</div>
+            <div class="slot">0.5x</div>
+        </div>
+    </div>
+    <button onclick="dropBall()">বল ফেলুন (৳১০)</button>
+    <h3 id="plinko-res"></h3>
+
+    <script>
+        function dropBall() {
+            const ball = document.getElementById('ball');
+            const res = document.getElementById('plinko-res');
+            ball.style.display = 'block';
+            ball.style.top = '20px';
+            ball.style.left = '142px';
+            res.innerText = "বল পড়ছে...";
+
+            setTimeout(() => {
+                const paths = [100, 142, 184]; // ৩টি স্লটের জন্য পজিশন
+                const finalPos = paths[Math.floor(Math.random() * paths.length)];
+                ball.style.transition = "all 1s ease-in";
+                ball.style.top = "300px";
+                ball.style.left = finalPos + "px";
+
+                setTimeout(() => {
+                    if(finalPos === 142) res.innerText = "অভিনন্দন! আপনি ২ গুণ জিতেছেন!";
+                    else res.innerText = "দুঃখিত! হাফ লস হয়েছে।";
+                }, 1000);
+            }, 100);
+        }
+    </script>
+</body>
+</html>
