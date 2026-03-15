@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Head Tail - DaduBet</title>
+    <style>
+        body { background: #0b1118; color: white; text-align: center; }
+        #coin { width: 120px; height: 120px; background: gold; border-radius: 50%; margin: 50px auto; border: 5px solid #b8860b; font-size: 24px; line-height: 120px; color: black; font-weight: bold; transition: transform 0.6s; }
+        .rotate { transform: rotateY(1800deg); }
+        button { padding: 10px 20px; margin: 10px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; }
+        .head-btn { background: #2196f3; color: white; }
+        .tail-btn { background: #e91e63; color: white; }
+    </style>
+</head>
+<body>
+    <h1>কয়েন টস 🪙</h1>
+    <div id="coin">?</div>
+    <button class="head-btn" onclick="toss('HEAD')">HEAD</button>
+    <button class="tail-btn" onclick="toss('TAIL')">TAIL</button>
+    <h2 id="toss-res"></h2>
+
+    <script>
+        function toss(bet) {
+            const coin = document.getElementById('coin');
+            const res = document.getElementById('toss-res');
+            coin.classList.add('rotate');
+            res.innerText = "টসিং হচ্ছে...";
+
+            setTimeout(() => {
+                const results = ['HEAD', 'TAIL'];
+                const win = results[Math.floor(Math.random() * results.length)];
+                coin.innerText = win;
+                coin.classList.remove('rotate');
+                
+                if(bet === win) res.innerText = "আপনি জিতেছেন! 🎉";
+                else res.innerText = "আপনি হেরেছেন! ❌";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
