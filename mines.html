@@ -2,37 +2,48 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>Mines Game</title>
+    <title>Mines Pro</title>
     <style>
-        body { background: #0f1621; color: white; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(5, 50px); gap: 10px; justify-content: center; margin-top: 20px; }
-        .cell { width: 50px; height: 50px; background: #2d3a4f; border-radius: 5px; cursor: pointer; line-height: 50px; font-size: 24px; }
+        body { background: #0f1621; color: white; text-align: center; font-family: sans-serif; }
+        .grid { display: grid; grid-template-columns: repeat(5, 60px); gap: 10px; justify-content: center; margin: 20px auto; }
+        .cell { width: 60px; height: 60px; background: #2d3a4f; border-bottom: 4px solid #1a2536; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 25px; line-height: 60px; }
+        .cell:hover { background: #3d4b5f; }
+        .cell.diamond { background: #00d4ff; border-color: #0099bb; }
+        .cell.mine { background: #ff4d4d; border-color: #cc0000; }
+        .controls { margin-top: 20px; }
+        button { padding: 10px 20px; background: #00d4ff; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h1>Mines 💣</h1>
-    <div class="grid" id="grid"></div>
-    <p id="info">৫টি হীরা বের করুন জিততে!</p>
+    <h1>MINES 💎</h1>
+    <div class="grid" id="board"></div>
+    <div class="controls">
+        <button onclick="location.reload()">নতুন গেম</button>
+    </div>
 
     <script>
-        const grid = document.getElementById('grid');
-        const mines = [5, 12, 19]; // লুকানো মাইন (পজিশন)
-        
+        const board = document.getElementById('board');
+        const minePositions = [];
+        while(minePositions.length < 3) {
+            let r = Math.floor(Math.random() * 25);
+            if(!minePositions.includes(r)) minePositions.push(r);
+        }
+
         for (let i = 0; i < 25; i++) {
             let cell = document.createElement('div');
             cell.className = 'cell';
             cell.onclick = function() {
-                if (mines.includes(i)) {
+                if(minePositions.includes(i)) {
+                    this.className = 'cell mine';
                     this.innerHTML = "💣";
-                    this.style.background = "red";
-                    alert("BOOM! আপনি হেরেছেন।");
+                    alert("গেম ওভার! মাইন পড়ে গেছে।");
                     location.reload();
                 } else {
+                    this.className = 'cell diamond';
                     this.innerHTML = "💎";
-                    this.style.background = "#4caf50";
                 }
             };
-            grid.appendChild(cell);
+            board.appendChild(cell);
         }
     </script>
 </body>
