@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Aviator Crash</title>
+    <style>
+        body { background: #0f1621; color: white; text-align: center; font-family: sans-serif; }
+        .game-box { margin: 50px auto; width: 300px; padding: 30px; border: 2px solid #e91e63; border-radius: 20px; }
+        #multiplier { font-size: 50px; color: #ff0055; margin: 20px 0; }
+        button { padding: 15px 30px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; }
+        .bet-btn { background: #e91e63; color: white; }
+        .cash-btn { background: #4caf50; color: white; display: none; }
+    </style>
+</head>
+<body>
+    <div class="game-box">
+        <h2>Aviator ✈️</h2>
+        <div id="multiplier">1.00x</div>
+        <button id="betBtn" class="bet-btn" onclick="startFly()">Start (৳১০)</button>
+        <button id="cashBtn" class="cash-btn" onclick="cashOut()">Cash Out</button>
+        <p id="msg"></p>
+    </div>
+
+    <script>
+        let multi = 1.00;
+        let timer;
+        let isFlying = false;
+
+        function startFly() {
+            multi = 1.00;
+            isFlying = true;
+            document.getElementById('betBtn').style.display = 'none';
+            document.getElementById('cashBtn').style.display = 'inline-block';
+            document.getElementById('msg').innerText = "প্লেন উড়ছে...";
+            
+            let crashPoint = (Math.random() * 4 + 1.1).toFixed(2); 
+
+            timer = setInterval(() => {
+                multi += 0.05;
+                document.getElementById('multiplier').innerText = multi.toFixed(2) + "x";
+
+                if (multi >= crashPoint) {
+                    clearInterval(timer);
+                    isFlying = false;
+                    document.getElementById('multiplier').innerText = "CRASHED! 💥";
+                    document.getElementById('cashBtn').style.display = 'none';
+                    document.getElementById('betBtn').style.display = 'inline-block';
+                }
+            }, 100);
+        }
+
+        function cashOut() {
+            if (!isFlying) return;
+            clearInterval(timer);
+            alert("অভিনন্দন! আপনি " + multi.toFixed(2) + "x লাভ করেছেন।");
+            location.reload();
+        }
+    </script>
+</body>
+</html>
