@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Mines Game</title>
+    <style>
+        body { background: #0f1621; color: white; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(5, 50px); gap: 10px; justify-content: center; margin-top: 20px; }
+        .cell { width: 50px; height: 50px; background: #2d3a4f; border-radius: 5px; cursor: pointer; line-height: 50px; font-size: 24px; }
+    </style>
+</head>
+<body>
+    <h1>Mines 💣</h1>
+    <div class="grid" id="grid"></div>
+    <p id="info">৫টি হীরা বের করুন জিততে!</p>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const mines = [5, 12, 19]; // লুকানো মাইন (পজিশন)
+        
+        for (let i = 0; i < 25; i++) {
+            let cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.onclick = function() {
+                if (mines.includes(i)) {
+                    this.innerHTML = "💣";
+                    this.style.background = "red";
+                    alert("BOOM! আপনি হেরেছেন।");
+                    location.reload();
+                } else {
+                    this.innerHTML = "💎";
+                    this.style.background = "#4caf50";
+                }
+            };
+            grid.appendChild(cell);
+        }
+    </script>
+</body>
+</html>
