@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Wheel</title>
+    <style>
+        body { background: #0b1118; color: white; text-align: center; }
+        .wheel { width: 150px; height: 150px; border: 5px solid white; border-radius: 50%; margin: 30px auto; line-height: 150px; font-size: 50px; }
+    </style>
+</head>
+<body>
+    <h1>লাকি নম্বর ১০ 🎡</h1>
+    <div id="wheel" class="wheel">?</div>
+    <input type="number" id="guess" placeholder="১-১০ এর মধ্যে ধরুন" style="padding:10px; border-radius:5px;">
+    <button onclick="spin()" style="padding:10px 20px;">চালান</button>
+    <h2 id="res"></h2>
+
+    <script>
+        function spin() {
+            const guess = parseInt(document.getElementById('guess').value);
+            const win = Math.floor(Math.random() * 10) + 1;
+            document.getElementById('wheel').innerText = win;
+            if(guess === win) document.getElementById('res').innerText = "সঠিক! আপনি ৫ গুণ জিতেছেন!";
+            else document.getElementById('res').innerText = "ভুল গেস! উইন নম্বর ছিল " + win;
+        }
+    </script>
+</body>
+</html>
